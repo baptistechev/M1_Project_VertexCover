@@ -1,5 +1,6 @@
 
 import numpy as np
+import time 
 
 def supprimerSommet(G, v):
     del G[v]
@@ -20,7 +21,6 @@ def degSommets(g):
     return deg
         
 def degMax(g):
-<<<<<<< HEAD
     deg=degSommets(g)
     init=False
     for e in deg:
@@ -32,12 +32,11 @@ def degMax(g):
     return max
 
 
-=======
-    return np.maximum(degSommets(g))
+def timeComplex(fonction,G):
+    start_time=time.time()
+    ret=fonction(G)
+    return time.time()-start_time
 
-    
->>>>>>> 0989a0ca9b065cd88d32892612624419161db986
-    
  
 
 
