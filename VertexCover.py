@@ -11,6 +11,8 @@ def degSommets(g):
         
 def degMax(g):
     return np.maximum(degSommets(g))
+
+    /truc
     
     
  
