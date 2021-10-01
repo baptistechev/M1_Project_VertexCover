@@ -31,14 +31,12 @@ def degMax(g):
             max=e
     return max
 
-<<<<<<< HEAD
 
 def timeComplex(fonction,G):
     start_time=time.time()
     ret=fonction(G)
     return time.time()-start_time
 
-=======
 def generateGraphe(n,p):
     G = dict()
     for i in range(n):
@@ -49,8 +47,15 @@ def generateGraphe(n,p):
                 G[i].append(j)
                 G[j].append(i)
     return G
+
+def algo_glouton(G):
+    C=[]
+    while G :
+        v = degMax(G)
+        C.append(v)
+        G=supprimerSommet(G,v)
+    return C
     
->>>>>>> 6145a093e7f1b008afb4de8aaa8bb8bcf8e0c670
  
 
 
