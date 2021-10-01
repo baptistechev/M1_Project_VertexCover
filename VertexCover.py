@@ -2,16 +2,23 @@
 import numpy as np
 
 def degSommets(g):
-    deg=[len(g)]
-    cpt=0
+    deg=dict()
     for e in g:
-        deg[cpt]=len(e)
-        cpt+=1
+        deg[e]=len(g[e])
     return deg
         
 def degMax(g):
-    return np.maximum(degSommets(g))
-    
+    deg=degSommets(g)
+    init=False
+    for e in deg:
+        if not(init):
+            max=e
+            init=True
+        if deg[e]>=deg[max]:
+            max=e
+    return max
+
+
     
  
 
