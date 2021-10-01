@@ -41,6 +41,12 @@ def generateGraphe(n,p):
                 G[j].append(i)
     return G
     
- 
-
+def couplageMax(G):
+    C = []
+    for x in G:
+        for y in G[x]:
+            if x not in C and y not in C:
+                C.append(x)
+                C.append(y)
+    return C
 
