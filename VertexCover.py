@@ -20,7 +20,6 @@ def degSommets(g):
     return deg
         
 def degMax(g):
-<<<<<<< HEAD
     deg=degSommets(g)
     init=False
     for e in deg:
@@ -31,12 +30,16 @@ def degMax(g):
             max=e
     return max
 
-
-=======
-    return np.maximum(degSommets(g))
-
-    
->>>>>>> 0989a0ca9b065cd88d32892612624419161db986
+def generateGraphe(n,p):
+    G = dict()
+    for i in range(n):
+        G[i] = []
+    for i in range(n):
+        for j in range(i,n):
+            if j!=i and np.random.rand() < p:
+                G[i].append(j)
+                G[j].append(i)
+    return G
     
  
 
