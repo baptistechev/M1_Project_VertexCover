@@ -31,12 +31,26 @@ def degMax(g):
             max=e
     return max
 
+<<<<<<< HEAD
 
 def timeComplex(fonction,G):
     start_time=time.time()
     ret=fonction(G)
     return time.time()-start_time
 
+=======
+def generateGraphe(n,p):
+    G = dict()
+    for i in range(n):
+        G[i] = []
+    for i in range(n):
+        for j in range(i,n):
+            if j!=i and np.random.rand() < p:
+                G[i].append(j)
+                G[j].append(i)
+    return G
+    
+>>>>>>> 6145a093e7f1b008afb4de8aaa8bb8bcf8e0c670
  
 
 
