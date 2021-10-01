@@ -31,10 +31,6 @@ def degMax(g):
             max=e
     return max
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a0e95070399ddee326dc0d8fc57f08e8cebcb08d
 def timeComplex(fonction,G):
     start_time=time.time()
     ret=fonction(G)
@@ -59,10 +55,8 @@ def algo_glouton(G):
         G=supprimerSommet(G,v)
     return C
     
-<<<<<<< HEAD
  
 
-=======
 def couplageMax(G):
     C = []
     for x in G:
@@ -71,5 +65,4 @@ def couplageMax(G):
                 C.append(x)
                 C.append(y)
     return C
->>>>>>> a0e95070399ddee326dc0d8fc57f08e8cebcb08d
 
