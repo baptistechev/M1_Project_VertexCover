@@ -31,14 +31,11 @@ def degMax(g):
             max=e
     return max
 
-<<<<<<< HEAD
-
 def timeComplex(fonction,G):
     start_time=time.time()
     ret=fonction(G)
     return time.time()-start_time
 
-=======
 def generateGraphe(n,p):
     G = dict()
     for i in range(n):
@@ -50,7 +47,6 @@ def generateGraphe(n,p):
                 G[j].append(i)
     return G
     
-<<<<<<< HEAD
 def couplageMax(G):
     C = []
     for x in G:
@@ -59,9 +55,4 @@ def couplageMax(G):
                 C.append(x)
                 C.append(y)
     return C
-=======
->>>>>>> 6145a093e7f1b008afb4de8aaa8bb8bcf8e0c670
- 
-
->>>>>>> 989675407e5bb542d6a68598c0def78a536db80e
 
