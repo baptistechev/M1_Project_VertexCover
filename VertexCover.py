@@ -47,6 +47,7 @@ def generateGraphe(n,p):
                 G[j].append(i)
     return G
 
+<<<<<<< HEAD
 def algo_glouton(G):
     C=[]
     while G :
@@ -57,6 +58,8 @@ def algo_glouton(G):
     
  
 
+=======
+>>>>>>> 003922a9c050b6409691104d06b67b0141a2f17b
 def couplageMax(G):
     C = []
     for x in G:
@@ -66,3 +69,12 @@ def couplageMax(G):
                 C.append(y)
     return C
 
+def algo_glouton(G):
+    C=[]
+    while G :
+        v = degMax(G)
+        C.append(v)
+        G=supprimerSommet(G,v)
+    return C
+    
+ 
