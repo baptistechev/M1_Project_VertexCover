@@ -1,6 +1,7 @@
 
 import numpy as np
 import time 
+import matplotlib.pyplot as plt
 
 def supprimerSommet(G, v):
     del G[v]
@@ -35,6 +36,23 @@ def timeComplex(fonction,G):
     start_time=time.time()
     ret=fonction(G)
     return time.time()-start_time
+
+def displayComplex(fonction,r,title):
+    plot1=plt.figure(title)
+
+    x=np.arange(1,r)
+    for p in np.arange (0.1,0.9,0.1):
+        y=[]
+        for i in range (1,r):
+            y.append(timeComplex(fonction,generateGraphe(i,p)))
+        plt.plot(x,y,label = p)
+
+    plt.xlabel('nb sommets')
+    plt.ylabel('temps(s)')
+    #plt.legend()
+    return plot1   
+    
+
 
 def generateGraphe(n,p):
     G = dict()
