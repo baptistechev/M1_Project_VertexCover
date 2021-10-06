@@ -37,15 +37,19 @@ def timeComplex(fonction,G):
     ret=fonction(G)
     return time.time()-start_time
 
-def displayComplex(fonction,r,title):
+def displayComplex(fonction,nmax,title):
     plot1=plt.figure(title)
 
-    x=np.arange(1,r)
+    x=np.arange(nmax/10,nmax,nmax/10)
     for p in np.arange (0.1,0.9,0.1):
         y=[]
-        for i in range (1,r):
-            y.append(timeComplex(fonction,generateGraphe(i,p)))
+        for i in range (nmax/10,nmax,nmax/10):
+            sum=0
+            for j in range (1,10):
+                sum+=timeComplex(fonction,generateGraphe(i,p))
+            y.append(sum/10)
         plt.plot(x,y,label = p)
+
 
     plt.xlabel('nb sommets')
     plt.ylabel('temps(s)')
