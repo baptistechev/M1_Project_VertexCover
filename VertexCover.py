@@ -87,5 +87,36 @@ def couplageMax(G):
                 C.append(y)
     return C
 
+def estFeuille(G):
+    for s in G:
+        if(len(G[s])==0) return False
+    return True
+
+def branchement_1(G):
+    C=[]
+    bestvalue=len(algo_glouton(G)) #on initialise le meilleurs nombre de sommet avec glouton
+    pile=[]
+    pile.append(G)
+    for g in pile :
+        if(not(estFeuille(G))): #il reste des arrête dans le graphe
+            (u,v)
+            for s in G:
+                if (len(G[s]!=0)):#On prend le premier sommet avec des sommets ajd
+                    (u,v)=(s,G[s][0])
+                    break
+            Gu=supprimerSommet(G,u) #Voir copy des graphes 
+            Gv=supprimerSommet(G,v)
+            pile.remove(g)
+            pile.append(Gu) #A voir parcours de l'arbre
+            pile.append(Gv)
+        else: #plus d'arrête dans le graphe 
+            
+
+
+        
+
+
+
+
 
  
