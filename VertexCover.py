@@ -2,6 +2,7 @@
 import numpy as np
 import time 
 import matplotlib.pyplot as plt
+import copy
 
 def supprimerSommet(G, v):
     del G[v]
@@ -69,7 +70,8 @@ def generateGraphe(n,p):
                 G[j].append(i)
     return G
 
-def algo_glouton(G):
+def algo_glouton(Graphe):
+    G = copy.deepcopy(Graphe)
     C=[]
     while G :
         v = degMax(G)
@@ -86,32 +88,46 @@ def couplageMax(G):
                 C.append(x)
                 C.append(y)
     return C
+            
+def branchement_aux(G, C):
+    global bestCouverture
+    sommetsSup = []
+    for g in G:
+        if len(G[g]) == 0:
+            sommetsSup.append(g)
+    supprimerEnsembleSommet(G, sommetsSup)
+    if len(G) == 0:
+        if len(bestCouverture) > len(C):
+            bestCouverture = C
+    else:
+        G1 = copy.deepcopy(G)
+        G2 = copy.deepcopy(G)
+        u = list(G.keys())[0]
+        v = G[u][0]
+        C1 = copy.deepcopy(C)
+        C2 = copy.deepcopy(C)
+        C1.append(u)
+        branchement_aux(supprimerSommet(G1,u), C1)
+        C2.append(v)
+        branchement_aux(supprimerSommet(G2,v), C2)
 
-def estFeuille(G):
-    for s in G:
-        if(len(G[s])==0) return False
-    return True
+bestCouverture = []
 
 def branchement_1(G):
-    C=[]
-    bestvalue=len(algo_glouton(G)) #on initialise le meilleurs nombre de sommet avec glouton
-    pile=[]
-    pile.append(G)
-    for g in pile :
-        if(not(estFeuille(G))): #il reste des arrête dans le graphe
-            (u,v)
-            for s in G:
-                if (len(G[s]!=0)):#On prend le premier sommet avec des sommets ajd
-                    (u,v)=(s,G[s][0])
-                    break
-            Gu=supprimerSommet(G,u) #Voir copy des graphes 
-            Gv=supprimerSommet(G,v)
-            pile.remove(g)
-            pile.append(Gu) #A voir parcours de l'arbre
-            pile.append(Gv)
-        else: #plus d'arrête dans le graphe 
-            
-
+    global bestCouverture
+    bestCouverture = [g for g in G]
+    sommetsSup = []
+    for g in G:
+        if len(G[g]) == 0:
+            sommetsSup.append(g)
+    supprimerEnsembleSommet(G, sommetsSup)
+    u = list(G.keys())[0]
+    v = G[u][0]
+    G1 = copy.deepcopy(G)
+    G2 = copy.deepcopy(G)
+    branchement_aux(supprimerSommet(G1,u), [u])
+    branchement_aux(supprimerSommet(G2,v), [v])
+    return bestCouverture
 
         
 
