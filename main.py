@@ -3,8 +3,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-# = {0 : [1,2], 1 : [0,4], 2 : [0],3:[4],4:[1,3]}
-#G = vc.generateGraphe(20,0.3)
+# G = {0 : [1,2], 1 : [0,4,3], 2 : [0],3:[4,1],4:[1,3]}
+G = {0 : [1,2,3], 1 : [0,3,4], 2 : [0], 3 : [0,1], 4 : [1]}
+
+# G = vc.generateGraphe(20,0.3)
+C = vc.branchement_1(G)
+print(C)
+C = vc.branchement_Couplage(G)
+print(C)
+C = vc.branchement_ameliore(G)
+print(C)
 
 #C = vc.couplageMax(G)
 #print(G)
@@ -28,15 +36,15 @@ import copy
 #vc.displayComplex(vc.branchement_1,15,"Branchement dumb")
 #plt.show()
 
-G=vc.generateGraphe(15,0.3)
-Gbis=copy.deepcopy(G)
+# G=vc.generateGraphe(15,0.3)
+# Gbis=copy.deepcopy(G)
 
 #G={0: [3, 8], 1: [3, 8], 2: [6], 3: [0, 1], 4: [5, 8], 5: [4, 8], 6: [2], 7: [], 8: [0, 1, 4, 5]}
 #print(G)
-print(1)
-print("SOL",vc.branchement_1(G))
-print(2)
-print("SOL",vc.branchement_Couplage(G))
-vc.displayComplex(vc.branchement_1,15,"Branchement couplage")
-plt.show()
+# print(1)
+# print("SOL",vc.branchement_1(G))
+# print(2)
+# print("SOL",vc.branchement_Couplage(G))
+# vc.displayComplex(vc.branchement_1,15,"Branchement couplage")
+# plt.show()
 
