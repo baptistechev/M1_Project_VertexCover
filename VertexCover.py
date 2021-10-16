@@ -374,8 +374,193 @@ def branchement_ameliore(G):
     print(noeudGen)
     return bestCouverture
 
+########AMELIORATION BRANCHEMENT 2###########
+#Choix des aretes en fonction du degre des sommets
+
+def branchement_aux_ameliore2(G, C):
+    global bestCouverture
+    global noeudGen
+    global borneInf
+    global borneSup
+
+    sommetsSup = []
+    for g in G:
+        if len(G[g]) == 0:
+            sommetsSup.append(g)
+    supprimerEnsembleSommet(G, sommetsSup)
+
+    if len(G) == 0:
+        if len(bestCouverture) > len(C):
+            bestCouverture = C
+        return
+    
+    #calcul des bornes
+    borneSup = calculBorneSup(G,C)
+    borneInf = calculBorneInf(G,C)
+
+    #Si condition respectée, on élague
+    if(borneInf >= borneSup):
+        return
+
+    #sinon on selectionne une arete !! de manière a avoir u de degré max!! et on branche
+    u = degMax(G)
+    v = G[u][0]
+    for x in G[u]:
+        if len(G[x]) > len(G[v]):
+            v = x
+
+    noeudGen+=2
+
+    G1 = copy.deepcopy(G)
+    C1 = copy.deepcopy(C)   
+    C1.append(u)
+
+    G2 = copy.deepcopy(G)
+    C2 = copy.deepcopy(C)
+    C2.append(v)
+
+    branchement_aux_ameliore2(supprimerEnsembleSommet(G1,Union([v], G[v])), Union(C1,G[v]))
+    branchement_aux_ameliore2(supprimerEnsembleSommet(G2,Union([u], G[u])), Union(C2,G[u]))
 
 
+def branchement_ameliore2(G):
+    global bestCouverture
+    global noeudGen
+    global borneInf
+    global borneSup
+    noeudGen=1
+
+    #Calcul bornes inf et sup
+    bestCouverture = [g for g in G]
+    borneSup = calculBorneSup(G,[])
+    borneInf = calculBorneInf(G,[])
+
+    #Si condition respecté pas besoin d'aller plus loin
+    if(borneInf >= borneSup):
+        return bestCouverture
+
+    #suppression des sommets sans voisins
+    sommetsSup = []
+    for g in G:
+        if len(G[g]) == 0:
+            sommetsSup.append(g)
+    supprimerEnsembleSommet(G, sommetsSup)
+    if len(G)==0:
+        return []
+
+    #On selectionne une arete dans G !! de manière a avoir u de degré max!!
+    u = degMax(G)
+    v = G[u][0]
+    for x in G[u]:
+        if len(G[x]) > len(G[v]):
+            v = x
+
+    #On branche sur chaque noeud
+    noeudGen+=2
+    G1 = copy.deepcopy(G)
+    G2 = copy.deepcopy(G)
+
+    branchement_aux_ameliore2(supprimerEnsembleSommet(G1,Union([v], G[v])), Union([u],G[v]))
+    branchement_aux_ameliore2(supprimerEnsembleSommet(G2,Union([u], G[u])), Union([v],G[u]))
+
+    print(noeudGen)
+    return bestCouverture
+
+########AMELIORATION BRANCHEMENT 3###########
+#Suppression des sommets de dg 1
+
+def branchement_aux_ameliore3(G, C):
+    global bestCouverture
+    global noeudGen
+    global borneInf
+    global borneSup
+
+    sommetsSup = []
+    for g in G:
+        if len(G[g]) == 0:
+            sommetsSup.append(g)
+    supprimerEnsembleSommet(G, sommetsSup)
+
+    if len(G) == 0:
+        if len(bestCouverture) > len(C):
+            bestCouverture = C
+        return
+    
+    #calcul des bornes
+    borneSup = calculBorneSup(G,C)
+    borneInf = calculBorneInf(G,C)
+
+    #Si condition respectée, on élague
+    if(borneInf >= borneSup):
+        return
+
+    #sinon on selectionne une arete !! de manière a avoir u de degré max!! et on branche
+    u = degMax(G)
+    v = G[u][0]
+    for x in G[u]:
+        if len(G[x]) > len(G[v]):
+            v = x
+
+    noeudGen+=1
+    G1 = copy.deepcopy(G)
+    G2 = copy.deepcopy(G)
+
+    C1 = copy.deepcopy(C)   
+    C1.append(u)
+    branchement_aux_ameliore3(supprimerEnsembleSommet(G1,Union([v], G[v])), Union(C1,G[v]))
+
+    if len(G2[v]) > 1 : #Si le sommets v est de dg 1 pas beson de brancher
+        noeudGen+=1
+        C2 = copy.deepcopy(C)
+        C2.append(v)
+        branchement_aux_ameliore3(supprimerEnsembleSommet(G2,Union([u], G[u])), Union(C2,G[u]))
+
+
+def branchement_ameliore3(G):
+    global bestCouverture
+    global noeudGen
+    global borneInf
+    global borneSup
+    noeudGen=1
+
+    #Calcul bornes inf et sup
+    bestCouverture = [g for g in G]
+    borneSup = calculBorneSup(G,[])
+    borneInf = calculBorneInf(G,[])
+
+    #Si condition respecté pas besoin d'aller plus loin
+    if(borneInf >= borneSup):
+        return bestCouverture
+
+    #suppression des sommets sans voisins
+    sommetsSup = []
+    for g in G:
+        if len(G[g]) == 0:
+            sommetsSup.append(g)
+    supprimerEnsembleSommet(G, sommetsSup)
+    if len(G)==0:
+        return []
+
+    #On selectionne une arete dans G !! de manière a avoir u de degré max!!
+    u = degMax(G)
+    v = G[u][0]
+    for x in G[u]:
+        if len(G[x]) > len(G[v]):
+            v = x
+
+    #On branche sur chaque noeud
+
+    noeudGen+=1
+    G1 = copy.deepcopy(G)
+    G2 = copy.deepcopy(G)
+    branchement_aux_ameliore3(supprimerEnsembleSommet(G1,Union([v], G[v])), Union([u],G[v]))
+    
+    if len(G2[v]) > 1 : #Si le sommets v est de dg 1 pas besoin de brancher
+        noeudGen+=1
+        branchement_aux_ameliore3(supprimerEnsembleSommet(G2,Union([u], G[u])), Union([v],G[u]))
+    
+    print(noeudGen)
+    return bestCouverture
 
 
  
