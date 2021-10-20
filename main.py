@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
-#comment
+G = vc.readInstance("instance")
 
 #test 4.2
 # G = {0 : [1,2], 1 : [0,4,3], 2 : [0],3:[4,1],4:[1,3]}
@@ -11,13 +11,13 @@ import copy
 #contre exemple 4.3
 # G = {0 : [1,2,3], 1 : [0,3,4], 2 : [0], 3 : [0,1], 4 : [1]}
 
-G = vc.generateGraphe(200,0.3)
-# C = vc.branchement_1(G)
-# print(C)
-# C = vc.branchement_Couplage(G)
-# print(C)
-# C = vc.branchement_ameliore(G)
-# print(C)
+# G = vc.generateGraphe(200,0.3)
+C = vc.branchement_1(G)
+print(C)
+C = vc.branchement_Couplage(G)
+print(C)
+C = vc.branchement_ameliore(G)
+print(C)
 C = vc.branchement_ameliore2(G)
 print(C)
 C = vc.branchement_ameliore3(G)
