@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import copy
 
+#comment
+
 #test 4.2
 # G = {0 : [1,2], 1 : [0,4,3], 2 : [0],3:[4,1],4:[1,3]}
 
