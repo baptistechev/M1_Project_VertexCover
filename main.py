@@ -9,17 +9,17 @@ import copy
 #contre exemple 4.3
 # G = {0 : [1,2,3], 1 : [0,3,4], 2 : [0], 3 : [0,1], 4 : [1]}
 
-G = vc.generateGraphe(200,0.3)
+#G = vc.generateGraphe(300,0.3)
 # C = vc.branchement_1(G)
 # print(C)
 # C = vc.branchement_Couplage(G)
 # print(C)
 # C = vc.branchement_ameliore(G)
 # print(C)
-C = vc.branchement_ameliore2(G)
-print(C)
-C = vc.branchement_ameliore3(G)
-print(C)
+#C = vc.branchement_ameliore2(G)
+#print(C)
+#C = vc.branchement_ameliore3(G)
+#print(C)
 
 #C = vc.couplageMax(G)
 #print(G)
@@ -31,11 +31,18 @@ print(C)
 #print(vc.timeComplex(vc.couplageMax,G))
 #print(vc.timeComplex(vc.algo_glouton,G))
 
-# vc.displayComplex(vc.algo_glouton,100,"glouton")
-# vc.displayComplex(vc.couplageMax,100,"couplage")
-# plt.show()
+#vc.displayComplexFixedP2(vc.algo_glouton,vc.couplageMax,500,0.2,"test")
+#vc.displayComplexFixedP(vc.branchement_1,20,1/np.sqrt(25),"couplageK")
+#vc.displayComplex(vc.branchement_1,20,"couplage")
+#vc.displayComplexBranch(25,1/np.sqrt(25),"test")
+#G = vc.generateGraphe(26,0.2)
+#print(vc.timeComplexBranch(G,0))#
+#vc.displayComplexFixedP4(vc.branchement_ameliore,vc.branchement_ameliore2,vc.branchement_ameliore3,25,1/np.sqrt(25),"test")
+vc.displayComplexFixedP2(vc.algo_glouton,vc.couplageMax,25,0.2,"test")
 
-#print(vc.algo_glouton(G))
+plt.show()
+
+#print(vc.algo_glouton(G))#
 #C = vc.branchement_1(vc.generateGraphe(10,0.3))
 #print(C)
 #print("Noeud gen: ",vc.noeudGen)
