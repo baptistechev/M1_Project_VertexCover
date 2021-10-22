@@ -5,6 +5,27 @@ import time
 import matplotlib.pyplot as plt
 import copy
 
+def readInstance(nomFichier):
+    G = dict()
+    f = open(nomFichier,"r")
+    f.readline()
+    n = int(f.readline())
+    f.readline()
+    for i in range(n):
+        x = int(f.readline())
+        G[i] = []
+    f.readline()
+    m = int(f.readline())
+    f.readline()
+    for i in range(m):
+        l = f.readline()
+        e = l.split(" ")
+        u,v = int(e[0]), int(e[1])
+        G[u].append(v)
+        G[v].append(u)
+    f.close()
+    return G
+
 def supprimerSommet(G, v):
     del G[v]
     for e in G:
@@ -513,10 +534,17 @@ def calculBorneInf(G,C,flag):
         m=m/2
         d=len(G[degMax(G)])
 
+<<<<<<< HEAD
         b1= np.ceil(m/d) if d!=0 else 0
         b2=len(couplageMax(G))/2  
         b2 = 0
         b3=(2*n-1-np.sqrt((np.square(2*n-1)-8*m)))/2
+=======
+    b1= np.ceil(m/d) if d!=0 else 0
+    b2=len(couplageMax(G))/2 
+    b2 = 0
+    b3=(2*n-1-np.sqrt((np.square(2*n-1)-8*m)))/2
+>>>>>>> d5b6fbc152e6717f9bd499ea69fc8720894cbf9d
 
         return len(C)+np.max([b1,b2,b3])
 
