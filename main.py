@@ -1,3 +1,7 @@
+#
+# Fichier main
+#
+
 import VertexCover as vc
 import Expe
 import matplotlib.pyplot as plt

@@ -1,3 +1,7 @@
+#
+# Contient les fonctions pour les temps d'execution, les courbes
+#
+
 import VertexCover as vc
 import matplotlib.pyplot as plt
 import time

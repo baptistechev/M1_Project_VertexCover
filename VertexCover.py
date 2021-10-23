@@ -1,3 +1,6 @@
+#
+# Contient les fonctions sur les Graphes
+#
 
 # -*- coding: utf-8 -*-
 import numpy as np
